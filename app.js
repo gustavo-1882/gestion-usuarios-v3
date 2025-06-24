@@ -10,8 +10,7 @@ fetch("usuarios.json")
 function mostrarUsuarios(dataToShow = null) {
  const tabla = document.querySelector("#tablaUsuarios tbody");
  tabla.innerHTML = ""; // Limpiar la tabla antes de renderizar 
- const usuariosAMostrar = dataToShow || usuarios.find(); // Usa los datos pasados o 
- todos los usuarios
+ const usuariosAMostrar = dataToShow || usuarios.find(); // Usa los datos pasados o todos los usuarios
  if (usuariosAMostrar.length === 0 && dataToShow !== null) {
    showMessage("No se encontraron resultados para su búsqueda.", "error");
  } else {
@@ -87,8 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
  showMessage("", ""); // Limpia cualquier mensaje
 });
  document.getElementById("btnClearForm").addEventListener("click", limpiarFormulario);
- // Búsqueda dinámica al escribir (Opcional, se puede añadir un debounce para mejor 
- rendimiento)
+ // Búsqueda dinámica al escribir (Opcional, se puede añadir un debounce para mejor rendimiento)
 document.getElementById("busquedaGeneral").addEventListener("keyup", buscarUsuario);
 document.getElementById("filtroActivo").addEventListener("change", buscarUsuario);
 });
