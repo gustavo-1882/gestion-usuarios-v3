@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <title>Gestión de Usuarios (Versión III)</title>
+   <style>
+       /* Estilos básicos para mejorar la legibilidad y la presentación */
+       body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f4; 
+        color: #333; }
+        h2 { color: #0056b3; }
+        form, .search-section {
+           background-color: #fff;
+           margin-bottom: 20px;
+           padding: 20px;
+           border: 1px solid #ddd;
+           border-radius: 8px;
+           box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+       }
+       input[type="text"],
+       input[type="number"],
+       input[type="email"],
+       select {
+           padding: 10px;
+           margin-right: 10px;
+           border: 1px solid #ccc;
+           border-radius: 4px;
+           box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+           margin-bottom: 10px; /* Espacio entre inputs */
+       }
+       button {
+           padding: 10px 20px;
+           background-color: #007bff;
+           color: white;
+           border: none;
+           border-radius: 4px;
+           cursor: pointer;
+           font-size: 16px;
+           margin-right: 5px;
+       }
+       button:hover { background-color: #0056b3; }
+       button#btnClearForm { background-color: #6c757d; }
+       button#btnClearForm:hover { background-color: #5a6268; }
+       table {
+           width: 100%;
+           border-collapse: collapse;
+           margin-top: 20px;
+           background-color: #fff;
+           border-radius: 8px;
+ overflow: hidden; /* Para que los bordes redondeados se apliquen a las celdas 
+*/
+           box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+       }
+       th, td {
+           border: 1px solid #eee;
+           padding: 12px;
+           text-align: left;
+       }
+       th {
+           background-color: #e9ecef;
+           color: #495057;
+           font-weight: bold;
+       }
+       tr:nth-child(even) { background-color: #f8f9fa; }
+       tr:hover { background-color: #e2e6ea; }
+       .message {
+           margin-top: 10px;
+           padding: 10px;
+           border-radius: 4px;
+           font-weight: bold;
+       }
+       .success { background-color: #d4edda; color: #155724; border-color: #c3e6cb; }
+       .error { background-color: #f8d7da; color: #721c24; border-color: #f5c6cb; }
+       .highlight-row { background-color: #ffc107 !important; transition: background￾color 0.5s ease; } /* Para resaltar la fila editada */
+   </style>
+</head>
+<body>
+   <h2>Gestión de Usuarios (Versión III)</h2>
+   <form id="formUsuario">
+       <input type="number" id="id" placeholder="ID" required />
+       <input type="text" id="nombre" placeholder="Nombre" required />
+       <input type="text" id="apellido" placeholder="Apellido" required />
+       <input type="email" id="correo" placeholder="Correo" required />
+       <label><input type="checkbox" id="activo" /> Activo</label>
+       <button type="submit">Guardar Usuario</button>
+       <button type="button" id="btnClearForm">Limpiar Formulario</button>
+   </form>
+   <hr>
+   <div class="search-section">
+       <input type="text" id="busquedaGeneral" placeholder="Buscar por nombre, apellido 
+       o correo..." />
+       <label>Estado:
+           <select id="filtroActivo">
+               <option value="all">Todos</option>
+               <option value="true">Activo</option>
+               <option value="false">Inactivo</option>
+           </select>
+       </label>
+       <button id="btnBuscar">Buscar</button>
+       <button id="btnMostrarTodos">Mostrar Todos</button>
+       <div id="resultadoTexto" class="message"></div>
+   </div>
+   <hr>
+   <table id="tablaUsuarios">
+       <thead>
+           <tr>
+               <th>ID</th>
+               <th>Nombre</th>
+               <th>Apellido</th>
+               <th>Correo</th>
+               <th>Activo</th>
+               <th>Acciones</th>
+           </tr>
+       </thead>
+       <tbody>
+       </tbody>
+   </table>
+   <script src="https://cdn.jsdelivr.net/npm/lokijs@1.5.9/build/lokijs.min.js"></script>
+   <script src="app.js"></script>
+</body>
+</html>
