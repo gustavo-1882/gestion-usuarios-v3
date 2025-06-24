@@ -86,8 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
  showMessage("", ""); // Limpia cualquier mensaje
 });
  document.getElementById("btnClearForm").addEventListener("click", limpiarFormulario);
- // Búsqueda dinámica al escribir (Opcional, se puede añadir un debounce para mejor 
- rendimiento)
+ // Búsqueda dinámica al escribir (Opcional, se puede añadir un debounce para mejor rendimiento)
 document.getElementById("busquedaGeneral").addEventListener("keyup", buscarUsuario);
 document.getElementById("filtroActivo").addEventListener("change", buscarUsuario);
 });
