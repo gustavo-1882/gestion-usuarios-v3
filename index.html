@@ -2,12 +2,12 @@
 <html lang="es">
 <head>
    <meta charset="UTF-8">
-   <title>Gestión de Usuarios (Versión III)</title>
+   <title>Gestión de Usuarios BD No Relacional 4B</title>
    <style>
        /* Estilos básicos para mejorar la legibilidad y la presentación */
-       body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f4; 
+       body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f4;
         color: #333; }
-        h2 { color: #0056b3; }
+        h2 { color: #0056b3; margin-left: 20px; /* Añadido margen para separar del logo */ }
         form, .search-section {
            background-color: #fff;
            margin-bottom: 20px;
@@ -46,8 +46,7 @@
            margin-top: 20px;
            background-color: #fff;
            border-radius: 8px;
- overflow: hidden; /* Para que los bordes redondeados se apliquen a las celdas 
-*/
+           overflow: hidden; /* Para que los bordes redondeados se apliquen a las celdas */
            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
        }
        th, td {
@@ -70,50 +69,72 @@
        }
        .success { background-color: #d4edda; color: #155724; border-color: #c3e6cb; }
        .error { background-color: #f8d7da; color: #721c24; border-color: #f5c6cb; }
-       .highlight-row { background-color: #ffc107 !important; transition: background￾color 0.5s ease; } /* Para resaltar la fila editada */
+       .highlight-row { background-color: #ffc107 !important; transition: background-color 0.5s ease; } /* Para resaltar la fila editada */
+
+       /* --- Nuevos estilos para la cabecera con Flexbox --- */
+       .header-content {
+           display: flex; /* Habilita Flexbox */
+           align-items: center; /* Centra verticalmente los ítems */
+           margin-bottom: 20px; /* Espacio debajo de la cabecera */
+       }
+       .logo-container img {
+           max-width: 100px; /* Tamaño más pequeño para que quepa bien al lado del título */
+           height: auto;
+           margin-right: 15px; /* Espacio entre el logo y el título */
+       }
+       /* --- Fin de nuevos estilos --- */
+
    </style>
 </head>
 <body>
-   <h2>Gestión de Usuarios (Versión III)</h2>
-   <form id="formUsuario">
-       <input type="number" id="id" placeholder="ID" required />
-       <input type="text" id="nombre" placeholder="Nombre" required />
-       <input type="text" id="apellido" placeholder="Apellido" required />
-       <input type="email" id="correo" placeholder="Correo" required />
-       <label><input type="checkbox" id="activo" /> Activo</label>
-       <button type="submit">Guardar Usuario</button>
-       <button type="button" id="btnClearForm">Limpiar Formulario</button>
-   </form>
-   <hr>
-   <div class="search-section">
-       <input type="text" id="busquedaGeneral" placeholder="Buscar por nombre, apellido 
-       o correo..." />
-       <label>Estado:
-           <select id="filtroActivo">
-               <option value="all">Todos</option>
-               <option value="true">Activo</option>
-               <option value="false">Inactivo</option>
-           </select>
-       </label>
-       <button id="btnBuscar">Buscar</button>
-       <button id="btnMostrarTodos">Mostrar Todos</button>
-       <div id="resultadoTexto" class="message"></div>
+   <div class="container">
+       <div class="header-content">
+           <div class="logo-container">
+               <img src="img/logo.png" alt="Logo de CETis 49">
+           </div>
+           <h2>Gestión de Usuarios BD No Relacional 4B</h2>
+       </div>
+
+       <form id="formUsuario">
+           <input type="number" id="id" placeholder="ID" required />
+           <input type="text" id="nombre" placeholder="Nombre" required />
+           <input type="text" id="apellido" placeholder="Apellido" required />
+           <input type="email" id="correo" placeholder="Correo" required />
+           <label><input type="checkbox" id="activo" /> Activo</label>
+           <button type="submit">Guardar Usuario</button>
+           <button type="button" id="btnClearForm">Limpiar Formulario</button>
+       </form>
+       <hr>
+       <div class="search-section">
+           <input type="text" id="busquedaGeneral" placeholder="Buscar por nombre, apellido
+           o correo..." />
+           <label>Estado:
+               <select id="filtroActivo">
+                   <option value="all">Todos</option>
+                   <option value="true">Activo</option>
+                   <option value="false">Inactivo</option>
+               </select>
+           </label>
+           <button id="btnBuscar">Buscar</button>
+           <button id="btnMostrarTodos">Mostrar Todos</button>
+           <div id="resultadoTexto" class="message"></div>
+       </div>
+       <hr>
+       <table id="tablaUsuarios">
+           <thead>
+               <tr>
+                   <th>ID</th>
+                   <th>Nombre</th>
+                   <th>Apellido</th>
+                   <th>Correo</th>
+                   <th>Activo</th>
+                   <th>Acciones</th>
+               </tr>
+           </thead>
+           <tbody>
+           </tbody>
+       </table>
    </div>
-   <hr>
-   <table id="tablaUsuarios">
-       <thead>
-           <tr>
-               <th>ID</th>
-               <th>Nombre</th>
-               <th>Apellido</th>
-               <th>Correo</th>
-               <th>Activo</th>
-               <th>Acciones</th>
-           </tr>
-       </thead>
-       <tbody>
-       </tbody>
-   </table>
    <script src="https://cdn.jsdelivr.net/npm/lokijs@1.5.9/build/lokijs.min.js"></script>
    <script src="app.js"></script>
 </body>
